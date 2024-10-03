@@ -20,7 +20,7 @@ public class GPSPoint {
 		this.elevation = elevation;
 		
 
-		throw new UnsupportedOperationException(TODO.construtor("GPSPoint"));
+		
 		
 	}
 
@@ -78,7 +78,7 @@ public class GPSPoint {
 		
 		String str;
 		
-		return "Tid: " + time + "latidude: " + latitude + "longitude: " + longitude + "elevation: " + elevation;
+		return time + "( " + latitude + "," + longitude + " )" + elevation + "\n";
 
 		// TODO
 		
