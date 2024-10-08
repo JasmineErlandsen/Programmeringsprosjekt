@@ -10,18 +10,13 @@ public class GPSDataConverter {
 
 	public static int toSeconds(String timestr) {
 		//a)		
-		int tIndex = timestr.indexOf("T");
-		int firstColonIndex = timestr.indexOf(":");
-		int secondColongIndex = timestr.indexOf(":" , firstColonIndex + 1);
+		int secs;
+		int hr, min, sec;
 		
-		// bruk substring for å hente timer, minutter og sekunder
-		String timer = timestr.substring(tIndex + 1, firstColonIndex);
-		int hr = Integer.parseInt(timer);
-		// bruk parseInt for å konverterer String til int
-		String minutter = timestr.substring(firstColonIndex + 1, secondColongIndex);
-		int min = Integer.parseInt(minutter);
-		String sekunder = timestr.substring(secondColongIndex + 1, timestr.indexOf("."));
-		int sec = Integer.parseInt(sekunder);
+		//Bruker substring(beginning index, end index) for å finne rett plass.
+		hr = Integer.parseInt(timestr.substring(11, 13));
+		min = Integer.parseInt(timestr.substring(14, 16));
+		sec = Integer.parseInt(timestr.substring(17, 19));
 
 		// beregn total antall sekunder
 		int total = (hr * 3600) + (min * 60) + sec;
