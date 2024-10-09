@@ -1,7 +1,5 @@
 package no.hvl.dat100ptc.oppgave1;
 
-import no.hvl.dat100ptc.TODO;
-
 public class GPSPoint {
 
 	// TODO - objektvariable
@@ -76,7 +74,7 @@ public class GPSPoint {
 	
 	public String toString() {
 		
-		return time + " (" + latitude + "," + longitude + ") " + elevation + "\n";
+		return time + " (" + latitude + "," + longitude + ") " + elevation;
 
 		// TODO
 		
