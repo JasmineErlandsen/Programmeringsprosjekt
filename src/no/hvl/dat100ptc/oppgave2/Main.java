@@ -6,9 +6,9 @@ public class Main {
 
 	
 	public static void main(String[] args) {
-
+		//kaller convertmetoden
 		GPSPoint g = GPSDataConverter.convert("2017-08-13T08:52:26.000Z", "60.385390", "5.217217", "61.9");
-		System.out.println(g);
+		System.out.println(g); //skriver det ut
 		
 		
 	}
