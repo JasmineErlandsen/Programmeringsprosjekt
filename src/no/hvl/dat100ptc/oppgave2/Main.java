@@ -11,5 +11,6 @@ public class Main {
 		System.out.println(g); //skriver det ut
 		
 		
+		
 	}
 }
