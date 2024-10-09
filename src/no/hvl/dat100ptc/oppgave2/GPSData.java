@@ -51,10 +51,12 @@ public class GPSData {
 	}
 
 	public void print() {
+
+		
 		for (int i = 0; i < antall; i++);
 		
 		System.out.println("====== GPS Data - START ======");
-		System.out.println(insertGPS);
+		System.out.println();
 		System.out.println("====== GPS Data - SLUTT ======");
 		
 	}
