@@ -1,9 +1,7 @@
 package no.hvl.dat100ptc.oppgave3;
 
-import static java.lang.Math.*;
-
-import no.hvl.dat100ptc.oppgave1.GPSPoint;
 import no.hvl.dat100ptc.TODO;
+import no.hvl.dat100ptc.oppgave1.GPSPoint;
 
 public class GPSUtils {
 
@@ -73,26 +71,36 @@ public class GPSUtils {
 		double d;
 		double latitude1, longitude1, latitude2, longitude2;
 
-		throw new UnsupportedOperationException(TODO.method());
+		latitude1 = gpspoint1.getLatitude();
+		latitude2 = gpspoint2.getLongitude();
+		longitude1 = gpspoint1.getLongitude();
+		longitude2 = gpspoint2.getLongitude();
+		
+		double deltalat = Math.toRadians(latitude2 - latitude1);
+		double deltalon = Math.toRadians(longitude2 - longitude1);
 
-		// TODO 
+		d = R * compute_c(compute_a(latitude1, latitude2, deltalat, deltalon));
+
+		return d;
 	}
 	
 	private static double compute_a(double phi1, double phi2, double deltaphi, double deltadelta) {
 	
-		throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO 
+		double a;
+
+		a = Math.pow(Math.sin(deltaphi / 2), 2) + (Math.cos(phi1) * Math.cos(phi2) * (Math.pow(Math.sin(deltadelta / 2), 2)));
+
+		return a; 
 
 	}
 
 	private static double compute_c(double a) {
 
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
-		
-		// TODO 
+		double c;
+
+		c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+		return c;
 
 	}
 
