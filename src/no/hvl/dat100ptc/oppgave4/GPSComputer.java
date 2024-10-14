@@ -43,11 +43,17 @@ public class GPSComputer {
 	public double totalElevation() {
 
 		double elevation = 0;
-
-		throw new UnsupportedOperationException(TODO.method());
 		
-		// TODO 
-		
+		for(int i = 0; i < gpspoints.length -1; i++) {
+			double point1 = gpspoints[i].getElevation();
+			double point2 = gpspoints[i + 1].getElevation();
+			
+			if(point2 - point1 > 0) {
+				elevation += point2 - point1;
+			}
+			
+		}
+		return elevation;
 	}
 
 	public int totalTime() {
