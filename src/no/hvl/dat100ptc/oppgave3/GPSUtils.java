@@ -1,6 +1,5 @@
 package no.hvl.dat100ptc.oppgave3;
 
-import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 
 public class GPSUtils {
@@ -160,12 +159,21 @@ public class GPSUtils {
 
 	public static String formatDouble(double d) {
 
-		String str;
+		String str = "";
 
+		double a = (d * 100) + 0.5;
+		int b = (int)(a);
+		double c = b / 100.0;
+		String cstr = "";
+		cstr += c; 
 		
-		throw new UnsupportedOperationException(TODO.method());
 		
-		// TODO
-		
+		for (int i = 0; i < TEXTWIDTH - cstr.length(); i++){
+			str += " ";
+		}
+
+		str += cstr;
+
+		return str;
 	}
 }
