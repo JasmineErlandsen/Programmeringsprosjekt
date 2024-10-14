@@ -29,11 +29,20 @@ public class GPSComputer {
 	
 	public double totalDistance() {
 
-		double distance = 0;
+		double distance = 0.0;
+		double totaltDistance = 0.0;
+		
+		for(int i = 0; i < gpspoints.length - 1; i++) {
+			GPSPoint point1 = gpspoints[i];
+			GPSPoint point2 = gpspoints[i +1];
+			
+			double totalDistance = GPSUtils.distance(point1, point2);
+			totaltDistance += distance;
+			
+		}
+		
 
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO
+		return totalDistance();
 
 	}
 
