@@ -60,7 +60,11 @@ public class GPSComputer {
 
 		int totalTime = 0; 
 
-		totalTime = gpspoints[gpspoints.length - 1].getTime(); // Så lenge datapunktene teller oppover
+		for(int i = 0; i < gpspoints.length - 1; i++) {
+			if (gpspoints[i + 1].getTime() > gpspoints[i].getTime()) {
+				totalTime += gpspoints[i + 1].getTime() - gpspoints[i].getTime();
+			}
+		}
 		
 		return totalTime;
 	}
