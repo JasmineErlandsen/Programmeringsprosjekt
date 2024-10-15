@@ -39,11 +39,10 @@ public class GPSUtils {
 	public static double[] getLatitudes(GPSPoint[] gpspoints) {
 
 		double[] lat = new double[gpspoints.length];
-		int i = 0;
 		
-		for(GPSPoint d : gpspoints) {
-			lat[i] = d.getLatitude();
-			i++;
+		for(int i = 0; i < gpspoints.length; i++) {
+			lat[i] = gpspoints[i].getLatitude();
+			
 			
 		}
 		return lat;
@@ -52,11 +51,9 @@ public class GPSUtils {
 
 	public static double[] getLongitudes(GPSPoint[] gpspoints) {
 		double[] lon = new double[gpspoints.length];
-		int i = 0;
 		
-		for(GPSPoint d : gpspoints) {
-			lon[i] = d.getLongitude();
-			i++;
+		for(int i = 0; i < gpspoints.length; i++) {
+			lon[i] = gpspoints[i].getLongitude();
 		}
 		
 		return lon; 
@@ -70,24 +67,27 @@ public class GPSUtils {
 		double d;
 		double latitude1, longitude1, latitude2, longitude2;
 
-		latitude1 = gpspoint1.getLatitude();
-		latitude2 = gpspoint2.getLongitude();
-		longitude1 = gpspoint1.getLongitude();
-		longitude2 = gpspoint2.getLongitude();
+		latitude1 = Math.toRadians(gpspoint1.getLatitude());
+		latitude2 = Math.toRadians(gpspoint2.getLatitude());
+		longitude1 = Math.toRadians(gpspoint1.getLongitude());
+		longitude2 = Math.toRadians(gpspoint2.getLongitude());
 		
-		double deltalat = Math.toRadians(latitude2 - latitude1);
-		double deltalon = Math.toRadians(longitude2 - longitude1);
-
-		d = R * compute_c(compute_a(latitude1, latitude2, deltalat, deltalon));
+		double phi1 = latitude1;
+		double phi2 = latitude2;
+		double deltaphi = latitude2 - latitude1;
+		double deltadelta = longitude2 - longitude1;
+		
+		double a = compute_a(phi1, phi2, deltaphi, deltadelta);
+		double c = compute_c(a);
+		
+		d = R * c;
 
 		return d;
 	}
 	
 	private static double compute_a(double phi1, double phi2, double deltaphi, double deltadelta) {
 	
-		double a;
-
-		a = Math.pow(Math.sin(deltaphi / 2), 2) + (Math.cos(phi1) * Math.cos(phi2) * (Math.pow(Math.sin(deltadelta / 2), 2)));
+		double a = Math.pow(Math.sin(deltaphi / 2), 2) + (Math.cos(phi1) * Math.cos(phi2) * (Math.pow(Math.sin(deltadelta / 2), 2)));
 
 		return a; 
 
@@ -95,9 +95,7 @@ public class GPSUtils {
 
 	private static double compute_c(double a) {
 
-		double c;
-
-		c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
 		return c;
 
@@ -112,7 +110,7 @@ public class GPSUtils {
 		int time1 = gpspoint1.getTime();
 		int time2 = gpspoint2.getTime();
 		
-		secs = (time2 - time1) * 3600;
+		secs = time2 - time1;
 		
 		speed = distance(gpspoint1, gpspoint2) / secs;
 		
@@ -126,16 +124,16 @@ public class GPSUtils {
 		String TIMESEP = ":";
 
 		int hr = secs / 3600;
-		String hrstr = "";
+		String hrstr = " ";
 		if ( hr < 10){
-			hrstr = "0" + hr;
+			hrstr += "0" + hr;
 		} else {
 			hrstr += hr;
 		}
 
 		int min = (secs % 3600) / 60;
 		String minstr = "";
-		if ( min > 10){
+		if ( min < 10){
 			minstr = "0" + min;
 		} else {
 			minstr += min;
@@ -143,7 +141,7 @@ public class GPSUtils {
 
 		int sec = secs % 60;
 		String secstr = "";
-		if ( sec > 10){
+		if ( sec < 10){
 			secstr = "0" + sec;
 		} else {
 			secstr += sec;
