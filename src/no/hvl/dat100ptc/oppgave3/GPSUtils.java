@@ -112,6 +112,10 @@ public class GPSUtils {
 		
 		secs = time2 - time1;
 		
+		if(secs <= 0) {
+			return 0;
+		}
+		
 		speed = distance(gpspoint1, gpspoint2) / secs;
 		
 		return speed;
