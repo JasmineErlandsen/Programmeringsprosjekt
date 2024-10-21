@@ -116,7 +116,7 @@ public class GPSComputer {
 		double met = 0;
 		double speedmph = speed * MS;
 
-		int t = secs / 3600;
+		double t = secs / 3600.0;
 		
 		if (speedmph < 10) {
 			met = 4.0;
@@ -144,7 +144,7 @@ public class GPSComputer {
 
 		double[] speeds = speeds();
 
-		for (int i = 0; i < gpspoints.length - 1; i++) {
+		for (int i = 0; i < speeds.length; i++) {
 			int timeDiff = (gpspoints[i + 1]).getTime() - (gpspoints[i]).getTime();
 			totalkcal += kcal(weight, timeDiff, speeds[i]);
 	}
@@ -162,7 +162,7 @@ public class GPSComputer {
 		System.out.println("Total elevation:      " + GPSUtils.formatDouble(totalElevation()) + " m");
 		System.out.println("Max speed      :      " + GPSUtils.formatDouble(maxSpeed() * 3.6) + " Km/t");
 		System.out.println("Average speed  :      " + GPSUtils.formatDouble(averageSpeed() * 3.6) + " Km/t");
-		System.out.println("Energy         :      " + totalKcal(WEIGHT) + " kcal");
+		System.out.println("Energy         :      " + GPSUtils.formatDouble(totalKcal(WEIGHT)) + " kcal");
 		System.out.println("==============================================");
 
 	}
