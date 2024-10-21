@@ -169,6 +169,9 @@ public class GPSUtils {
 		double c = b / 100.0;
 		String cstr = "";
 		cstr += c; 
+		if (b % 10 == 0) {
+			cstr += "0";
+		}
 		
 		
 		for (int i = 0; i < TEXTWIDTH - cstr.length(); i++){
