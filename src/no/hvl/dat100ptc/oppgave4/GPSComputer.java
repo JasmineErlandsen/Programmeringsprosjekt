@@ -1,6 +1,5 @@
 package no.hvl.dat100ptc.oppgave4;
 
-import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 import no.hvl.dat100ptc.oppgave2.GPSData;
 import no.hvl.dat100ptc.oppgave2.GPSDataFileReader;
@@ -143,23 +142,28 @@ public class GPSComputer {
 
 		double totalkcal = 0;
 
-	for (int i = 0; i < gpspoints.length - 1; i++) {
-		
+		double[] speeds = speeds();
+
+		for (int i = 0; i < gpspoints.length - 1; i++) {
+			int timeDiff = (gpspoints[i + 1]).getTime() - (gpspoints[i]).getTime();
+			totalkcal += kcal(weight, timeDiff, speeds[i]);
 	}
 
+	return totalkcal;
 	}
 
 	private static double WEIGHT = 80.0;
 
 	public void displayStatistics() {
-System.out.println("==============================================");
-System.out.println("Total Time     :      " + GPSUtils.formatTime(totalTime()));
-System.out.println("Total distance :      " + (totalDistance() / 1000) + " Km");
-System.out.println("Total elevation:      " + totalElevation() + " m");
-System.out.println("Max speed      :      " + (maxSpeed() * 3.6) + " Km/t");
-System.out.println("Average speed  :      " + (averageSpeed() * 3.6) + " Km/t");
-System.out.println("Energy         :      " + totalKcal(WEIGHT) + " kcal");
-System.out.println("==============================================");
+
+		System.out.println("==============================================");
+		System.out.println("Total Time     :      " + GPSUtils.formatTime(totalTime()));
+		System.out.println("Total distance :      " + (totalDistance() / 1000) + " Km");
+		System.out.println("Total elevation:      " + totalElevation() + " m");
+		System.out.println("Max speed      :      " + (maxSpeed() * 3.6) + " Km/t");
+		System.out.println("Average speed  :      " + (averageSpeed() * 3.6) + " Km/t");
+		System.out.println("Energy         :      " + totalKcal(WEIGHT) + " kcal");
+		System.out.println("==============================================");
 
 	}
 
