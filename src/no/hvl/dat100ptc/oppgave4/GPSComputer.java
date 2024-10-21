@@ -107,7 +107,7 @@ public class GPSComputer {
 	        totalspeed += speed;
 	    }
 
-	    double averageSpeed = totalspeed / (gpspoints.length - 1);
+	    double averageSpeed = totalspeed / gpspoints.length - 1;
 	    return averageSpeed;
 	}
 
