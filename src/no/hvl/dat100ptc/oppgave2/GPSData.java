@@ -48,6 +48,9 @@ public class GPSData {
 		for (int i = 0; i < antall; i++) {
 			System.out.println(gpspoints[i].toString());
 		}
+		for (GPSPoint g: gpspoints){
+			System.out.println(g.toString());
+		}
 		System.out.println("====== GPS Data - SLUTT ======");
 		
 	}

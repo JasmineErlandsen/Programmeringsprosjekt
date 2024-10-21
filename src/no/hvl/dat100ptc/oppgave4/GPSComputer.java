@@ -98,6 +98,7 @@ public class GPSComputer {
 	}
 
 	public double averageSpeed() {
+<<<<<<< Updated upstream
 	    double average = 0;
 	    double totDist = totalDistance();
 	    int totTime = totalTime();
@@ -105,8 +106,13 @@ public class GPSComputer {
 	    
 	    return average;
 
+=======
+	    
+		double average = totalDistance() / totalTime();
+	    
+		return average;
+>>>>>>> Stashed changes
 	}
-
 
 	// conversion factor m/s to miles per hour (mps)
 	public static final double MS = 2.23;

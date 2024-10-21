@@ -157,6 +157,7 @@ public class GPSUtils {
 		
 	}
 	
+	
 	private static int TEXTWIDTH = 10;
 
 	public static String formatDouble(double d) {
