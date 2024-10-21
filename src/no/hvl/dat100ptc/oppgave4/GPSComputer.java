@@ -98,17 +98,13 @@ public class GPSComputer {
 	}
 
 	public double averageSpeed() {
-	    double totalspeed = 0;
+	    double average = 0;
+	    double totDist = totalDistance();
+	    int totTime = totalTime();
+	    average = totDist / totTime;
+	    
+	    return average;
 
-	    for (int i = 0; i < gpspoints.length - 1; i++) {
-	        GPSPoint gpspoint1 = gpspoints[i];
-	        GPSPoint gpspoint2 = gpspoints[i + 1];
-	        double speed = GPSUtils.speed(gpspoint1, gpspoint2);
-	        totalspeed += speed;
-	    }
-
-	    double averageSpeed = totalspeed / gpspoints.length - 1;
-	    return averageSpeed;
 	}
 
 

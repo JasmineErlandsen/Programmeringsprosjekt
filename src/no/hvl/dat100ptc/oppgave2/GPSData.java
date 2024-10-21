@@ -36,14 +36,8 @@ public class GPSData {
 
 	public boolean insert(String time, String latitude, String longitude, String elevation) {
 
-		GPSPoint gpspoint;
-		// Konverterer verdiene i parametre fra String til int og double
-		int tid = Integer.parseInt(time);
-		double lat = Double.parseDouble(latitude);
-		double lon = Double.parseDouble(longitude);
-		double hoyde = Double.parseDouble(elevation);
-		
-		gpspoint = new GPSPoint(tid, lat, lon, hoyde);
+		GPSPoint gpspoint = GPSDataConverter.convert(time, latitude, longitude, elevation);
+				
 		return insertGPS(gpspoint);
 
 	}
