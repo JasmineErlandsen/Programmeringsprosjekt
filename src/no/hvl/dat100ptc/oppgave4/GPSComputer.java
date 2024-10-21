@@ -98,20 +98,13 @@ public class GPSComputer {
 	}
 
 	public double averageSpeed() {
-<<<<<<< Updated upstream
-	    double average = 0;
-	    double totDist = totalDistance();
-	    int totTime = totalTime();
-	    average = totDist / totTime;
-	    
-	    return average;
 
-=======
-	    
-		double average = totalDistance() / totalTime();
-	    
+		double average = 0;
+		double totDist = totalDistance();
+		int totTime = totalTime();
+		average = totDist / totTime;
+
 		return average;
->>>>>>> Stashed changes
 	}
 
 	// conversion factor m/s to miles per hour (mps)
@@ -124,8 +117,25 @@ public class GPSComputer {
 		double met = 0;
 		double speedmph = speed * MS;
 
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
+		int t = secs / 3600;
+		
+		if (speedmph < 10) {
+			met = 4.0;
+		}else if (10 < speedmph && speedmph < 12){
+			met = 6.0;
+		}else if ( 12 < speedmph && speedmph < 14) {
+			met = 8.0;
+		}else if (14 <speedmph && speedmph < 16) {
+			met = 10.0;
+		} else if (16 < speedmph && speedmph < 20) {
+			met = 12.0;
+		}else{
+			met = 16.0;
+			
+			
+		}
+		kcal = met * weight * t;
+		return kcal;
 
 	}
 
@@ -133,17 +143,23 @@ public class GPSComputer {
 
 		double totalkcal = 0;
 
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
+	for (int i = 0; i < gpspoints.length - 1; i++) {
+		
+	}
 
 	}
 
 	private static double WEIGHT = 80.0;
 
 	public void displayStatistics() {
-
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
+System.out.println("==============================================");
+System.out.println("Total Time     :      " + GPSUtils.formatTime(totalTime()));
+System.out.println("Total distance :      " + (totalDistance() / 1000) + " Km");
+System.out.println("Total elevation:      " + totalElevation() + " m");
+System.out.println("Max speed      :      " + (maxSpeed() * 3.6) + " Km/t");
+System.out.println("Average speed  :      " + (averageSpeed() * 3.6) + " Km/t");
+System.out.println("Energy         :      " + totalKcal(WEIGHT) + " kcal");
+System.out.println("==============================================");
 
 	}
 
